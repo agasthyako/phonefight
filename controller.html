@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e1116">
+<title>PhoneFight Controller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0e1116; --fg: #e8edf3; --dim: #8a96a6; --accent: #ffb547; --hot: #f72585; --panel: #1c2230; }
+  * { box-sizing: border-box; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
+    font: 16px/1.45 "Zen Kaku Gothic New", -apple-system, system-ui, sans-serif; touch-action: none; overflow: hidden; }
+  body { display: flex; flex-direction: column; padding: 16px; gap: 12px; }
+  #status { font-size: 14px; color: var(--dim); display: flex; justify-content: space-between; }
+  #status b { color: var(--fg); }
+  .screen { flex: 1; display: none; flex-direction: column; gap: 12px; }
+  .screen.on { display: flex; }
+  h1 { margin: 24px 0 0; font: 800 36px/1 "Shippori Mincho B1", "Hiragino Mincho ProN", Georgia, serif; }
+  h1 span { background: linear-gradient(90deg, #ff8a4c, #f0606a 45%, #7a3284); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  p { color: var(--dim); margin: 0; }
+  button { font: inherit; border: 0; border-radius: 16px; padding: 18px; }
+  button { color: var(--bg); background: var(--accent); font-weight: 600; }
+  #start button { margin-top: auto; font-size: 22px; padding: 28px; }
+  .grip { margin: auto 0; text-align: center; color: var(--dim); }
+  .grip svg { width: 120px; height: 120px; display: block; margin: 0 auto 12px; }
+  #hold { flex: 1; background: var(--panel); color: var(--dim); font-size: 18px; font-weight: 400; }
+  #hold.down { background: var(--hot); color: var(--fg); }
+  #recentre { background: #2b3446; color: var(--fg); }
+  #meter { height: 6px; border-radius: 3px; background: var(--panel); overflow: hidden; }
+  #meter div { height: 100%; width: 0; background: var(--accent); transition: width 60ms linear; }
+  #msg { color: var(--dim); text-align: center; }
+</style>
+</head>
+<body>
+<div id="status"><span id="conn">Not connected</span><span id="slot"></span></div>
+
+<div id="noroom" class="screen">
+  <h1>Phone<span>Fight</span></h1>
+  <p>Scan the QR code on the Game screen with your phone's camera to join.</p>
+</div>
+
+<div id="start" class="screen">
+  <h1>Phone<span>Fight</span></h1>
+  <div class="grip">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+      <rect x="40" y="10" width="20" height="44" rx="4"/><path d="M50 54v12M36 66h28M50 66v24"/>
+    </svg>
+    Hold your phone like a sword grip:<br>top of the phone is the blade, screen facing sideways.
+  </div>
+  <p id="msg"></p>
+  <button id="enable">Enable motion</button>
+</div>
+
+<div id="pad" class="screen">
+  <div id="meter"><div></div></div>
+  <button id="hold">Pause</button>
+  <button id="recentre">Recentre (point at your screen)</button>
+</div>
+
+<script type="module" src="./src/controller/main.js"></script>
+</body>
+</html>
