@@ -27,4 +27,4 @@ Keys on the Game: **R** recentres, and **Enter** restarts after a game over.
 
 Every push to `main` builds and publishes the site to GitHub Pages (`.github/workflows/deploy.yml`). `npm run build` writes the same static site to `dist/` if you want to host it elsewhere; paths are relative, so a subfolder works.
 
-Connections go peer to peer, brokered by the free public PeerJS server. Networks that block peer-to-peer traffic won't connect; a relay fallback is planned.
+Connections go peer to peer, brokered by the free public PeerJS server, so the phone and computer don't need to share a network. When a network blocks direct peer-to-peer traffic, PeerJS falls back to its free public TURN relays, which can be slow or unreliable. If a phone won't connect, switching it to mobile data usually helps.
